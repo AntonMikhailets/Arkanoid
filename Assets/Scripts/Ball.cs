@@ -3,6 +3,7 @@ using UnityEngine;
 public class Ball : MonoBehaviour
 {
     [SerializeField] private Vector2 _initialVelocity;
+    [SerializeField] private Transform _activeParent;
 
     private Rigidbody2D _rigidbody;
     private bool _isActive;
@@ -23,7 +24,7 @@ public class Ball : MonoBehaviour
 
     private void ActivateBall()
     {
-        //transform.SetParent(null);
+        transform.SetParent(_activeParent);
         _rigidbody.bodyType = RigidbodyType2D.Dynamic;
         _rigidbody.AddForce(_initialVelocity);
     }
