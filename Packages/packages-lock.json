@@ -1,5 +1,11 @@
 {
   "dependencies": {
+    "com.arikaton.uimanager": {
+      "version": "file:UIManager-main",
+      "depth": 0,
+      "source": "embedded",
+      "dependencies": {}
+    },
     "com.unity.2d.animation": {
       "version": "5.0.4",
       "depth": 0,

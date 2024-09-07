@@ -1,0 +1,92 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &-5208053959292025247
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8d90dded1ce34f1292b0d71d577ad1a1, type: 3}
+  m_Name: Lose
+  m_EditorClassIdentifier: 
+  Collection: {fileID: 11400000}
+  Id: Lose
+  ViewIds:
+  - Game
+  - Lose
+--- !u!114 &-2156113729041619523
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8d90dded1ce34f1292b0d71d577ad1a1, type: 3}
+  m_Name: Win
+  m_EditorClassIdentifier: 
+  Collection: {fileID: 11400000}
+  Id: Win
+  ViewIds:
+  - Game
+  - Win
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: eb142ac6e6cd414a9a804da1452ccf7c, type: 3}
+  m_Name: MainNodes
+  m_EditorClassIdentifier: 
+  Id: NodeCollection
+  UINodes:
+  - {fileID: -2156113729041619523}
+  - {fileID: -5208053959292025247}
+  - {fileID: 7067042454125807019}
+  - {fileID: 6645099079687003633}
+  UIViews:
+  - Win
+  - Lose
+  - Game
+  - Start
+--- !u!114 &6645099079687003633
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8d90dded1ce34f1292b0d71d577ad1a1, type: 3}
+  m_Name: Start
+  m_EditorClassIdentifier: 
+  Collection: {fileID: 11400000}
+  Id: Start
+  ViewIds:
+  - Game
+  - Start
+--- !u!114 &7067042454125807019
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8d90dded1ce34f1292b0d71d577ad1a1, type: 3}
+  m_Name: Game
+  m_EditorClassIdentifier: 
+  Collection: {fileID: 11400000}
+  Id: Game
+  ViewIds:
+  - Game

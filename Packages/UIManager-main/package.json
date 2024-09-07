@@ -1,0 +1,32 @@
+{
+  "name": "com.arikaton.uimanager",
+  "displayName": "UI Manager",
+  "version": "1.0.0-rc.1",
+  "description": "Fast and convenient UI management and animating in Unity.",
+  "license": "MIT",
+  "licensesUrl": "https://github.com/Arikaton/UIManager/blob/main/LICENSE.md",
+  "repository": {
+    "type": "git",
+    "url": "git+git@github.com:Arikaton/UIManager.git"
+  },
+  "author": {
+    "name": "arikaton",
+    "email": "arikaton58246@gmail.com",
+    "url": "https://github.com/Arikaton"
+  },
+  "dependencies": {},
+  "keywords": [
+    "ui"
+  ],
+  "bugs": {
+    "url": "https://github.com/Arikaton/UIManager/issues"
+  },
+  "homepage": "https://github.com/Arikaton/UIManager#readme",
+  "samples": [
+    {
+      "displayName": "Basic Samples",
+      "description": "Contains basic package sample with simple interactions",
+      "path": "Samples~/BasicSamples"
+    }
+  ]
+}

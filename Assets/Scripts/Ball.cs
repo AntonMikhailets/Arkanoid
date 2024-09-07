@@ -11,19 +11,26 @@ public class Ball : MonoBehaviour
     private void Awake()
     {
         _rigidbody = GetComponent<Rigidbody2D>();
-        _rigidbody.bodyType = RigidbodyType2D.Kinematic;
+        Disable();
     }
-    
+
     private void Update()
     {
-        if (Input.GetKeyDown(KeyCode.Space))
+        if (Input.GetKeyDown(KeyCode.Space) && !_isActive)
         {
             ActivateBall();
         }
     }
 
+    public void Disable()
+    {
+        _isActive = false;
+        _rigidbody.bodyType = RigidbodyType2D.Static;
+    }
+
     private void ActivateBall()
     {
+        _isActive = true;
         transform.SetParent(_activeParent);
         _rigidbody.bodyType = RigidbodyType2D.Dynamic;
         _rigidbody.AddForce(_initialVelocity);

@@ -13,7 +13,7 @@ public class Paddle : MonoBehaviour
     private float LeftBorder => -ScreenWidth / 2 + PaddleWidth / 2;
     private float RightBorder => ScreenWidth / 2 - PaddleWidth / 2;
 
-    private void Update()
+    private void FixedUpdate()
     {
         var moveInput = Input.GetAxis(Horizontal);
         var newPosition = _rect.localPosition + new Vector3(moveInput * _speed * Time.deltaTime, 0, 0);
