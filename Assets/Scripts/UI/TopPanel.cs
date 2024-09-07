@@ -5,6 +5,7 @@ public class TopPanel : MonoBehaviour
 {
     private const string AttemptsTextFormat = "Попыток: {0}";
     private const string LevelTextFormat = "Уроыень: {0}";
+    private const int One = 1;
     
     [SerializeField] private GameSession _gameSession;
     [SerializeField] private TextMeshProUGUI _attemptsText;
@@ -29,6 +30,6 @@ public class TopPanel : MonoBehaviour
 
     private void OnLevelChanged(int value)
     {
-        _levelText.text = string.Format(LevelTextFormat, value);
+        _levelText.text = string.Format(LevelTextFormat, value + One);
     }
 }

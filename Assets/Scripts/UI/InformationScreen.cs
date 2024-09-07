@@ -21,6 +21,6 @@ public class InformationScreen : MonoBehaviour
         {
             _clickAction?.Invoke();
         }
-        gameObject.SetActive(false);
+        //gameObject.SetActive(false);
     }
 }

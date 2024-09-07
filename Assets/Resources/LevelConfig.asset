@@ -12,4 +12,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3dae5598c6a40c047b8d59c33e8897fe, type: 3}
   m_Name: LevelConfig
   m_EditorClassIdentifier: 
-  _blocksConfiguration: []
+  _blocksConfiguration:
+  - {fileID: 2707792053954480236, guid: 3a9af2382390c314d813c4e97ac7bcbe, type: 3}
+  - {fileID: 962098972954935951, guid: ba89724fddb72554f8444733756b8976, type: 3}

@@ -1,4 +1,5 @@
 using System;
+using Blocks;
 using DefaultNamespace;
 using UIManagement.Core;
 using UnityEngine;
@@ -17,9 +18,12 @@ public class GameSession : MonoBehaviour
     [SerializeField] private BallFallingController _fallingController;
     [SerializeField] private GameInitializer _gameInitializer;
     [SerializeField] private BlocksController _blocksController;
+    [SerializeField] private LevelManager _levelManager;
+    [SerializeField] private GamePause _gamePause;
 
     private int _attempts;
     private int _level;
+    private bool _isPause;
 
     public int Attempts
     {
@@ -50,7 +54,10 @@ public class GameSession : MonoBehaviour
     private void Start()
     {
         Attempts = StartAttemptsValue;
-        UIManager.Instance.ShowViewNode("Start");
+        Level = 0;
+        _levelManager.LoadLevel(Level);
+
+        ShowStartScreen();
     }
 
     private void OnDestroy()
@@ -73,16 +80,6 @@ public class GameSession : MonoBehaviour
         }
     }
 
-    private void Pause()
-    {
-        Time.timeScale = 0; 
-    }
-    
-    private void Play()
-    {
-        Time.timeScale = 1; 
-    }
-    
     private void OnAllBlocksDestroyed()
     {
         ShowVictoryScreen();
@@ -95,18 +92,25 @@ public class GameSession : MonoBehaviour
 
     private void ShowStartScreen()
     {
-       
+        UIManager.Instance.ShowViewNode("Start");
     }
 
     private void ShowVictoryScreen()
     {
-        Pause();
+        _gamePause.Pause();
         UIManager.Instance.ShowViewNode("Win");
-        _victoryScreen.Show();
+        _victoryScreen.Show(UpgradeLevel);
     }
 
     private void ShowLoseScreen()
     {
+        UIManager.Instance.ShowViewNode("Lose");
         _looseScreen.Show();
+    }
+
+    private void UpgradeLevel()
+    {
+        _levelManager.LoadLevel(++Level);
+        _gamePause.Play();
     }
 }

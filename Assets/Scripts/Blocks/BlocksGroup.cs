@@ -1,7 +1,7 @@
 using System;
 using UnityEngine;
 
-public class BlocksController : MonoBehaviour
+public class BlocksGroup : MonoBehaviour
 {
     public event Action AllBlocksDestroyed;
     
