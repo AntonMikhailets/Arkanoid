@@ -6,13 +6,15 @@ public class BlocksGroup : MonoBehaviour
     public event Action AllBlocksDestroyed;
     public event Action BlockDestroyed;
     
-    [SerializeField] private Block[] _blocks;
-    [SerializeField] private int _blocksAmount;
+    private Block[] _blocks;
+    private int _blocksAmount;
     
     private void Start()
     {
+        _blocks = GetComponentsInChildren<Block>();
         _blocksAmount = _blocks.Length;
 
+        
         foreach (var block in _blocks)
         {
             block.BlockDestroyed += OnBlockDestroyed;
@@ -21,6 +23,8 @@ public class BlocksGroup : MonoBehaviour
 
     private void OnDestroy()
     {
+        if (_blocks == null) return;
+        
         foreach (var block in _blocks)
         {
             block.BlockDestroyed -= OnBlockDestroyed;
