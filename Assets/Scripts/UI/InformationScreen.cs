@@ -10,17 +10,15 @@ public class InformationScreen : MonoBehaviour
 
     public void Show(Action clickAction = null)
     {
-        //gameObject.SetActive(true);
         _clickAction = clickAction;
         _actionButton.onClick.AddListener(InvokeClickAction);
     }
 
     private void InvokeClickAction()
     {
-        if (_clickAction != null)
+        if (_clickAction != null && !Input.GetKeyDown(KeyCode.Space))
         {
             _clickAction?.Invoke();
         }
-        //gameObject.SetActive(false);
     }
 }

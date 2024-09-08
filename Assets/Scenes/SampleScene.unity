@@ -346,7 +346,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 86898438}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1684647687}
+        m_TargetAssemblyTypeName: UIManagement.Core.UIView, UIManagement
+        m_MethodName: Hide
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &86898438
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -973,8 +985,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _config: {fileID: 11400000, guid: 99ed9a81c795f654095a0fa78c3d40a8, type: 2}
-  _blocksPosition: {fileID: 1306364162417413437}
-  _blocksController: {fileID: 0}
+  _blocksController: {fileID: 1306364162417413438}
+  _gameInitializer: {fileID: 1443109751}
 --- !u!4 &331334771
 Transform:
   m_ObjectHideFlags: 0
@@ -1543,9 +1555,9 @@ MonoBehaviour:
   _victoryScreen: {fileID: 147255314}
   _looseScreen: {fileID: 565162257}
   _fallingController: {fileID: 1535344407}
-  _gameInitializer: {fileID: 1443109751}
-  _blocksGroup: {fileID: 0}
+  _blocksController: {fileID: 1306364162417413438}
   _levelManager: {fileID: 331334770}
+  _gamePause: {fileID: 899321983}
 --- !u!4 &625512771
 Transform:
   m_ObjectHideFlags: 0
@@ -1642,7 +1654,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 671631229}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 147255315}
+        m_TargetAssemblyTypeName: UIManagement.Core.UIView, UIManagement
+        m_MethodName: Hide
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &671631229
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2082,13 +2106,14 @@ RectTransform:
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children: []
+  m_Children:
+  - {fileID: 1513772725}
   m_Father: {fileID: 840527847}
-  m_RootOrder: 1
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: 52.31845}
+  m_AnchoredPosition: {x: 0, y: 60}
   m_SizeDelta: {x: 50, y: 50}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &792829827
@@ -2389,7 +2414,6 @@ RectTransform:
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
-  - {fileID: 1513772725}
   - {fileID: 792829822}
   m_Father: {fileID: 693556035}
   m_RootOrder: 0
@@ -2451,6 +2475,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _rect: {fileID: 840527847}
   _canvasRect: {fileID: 442984050}
+  _pause: {fileID: 899321983}
   _speed: 2000
 --- !u!61 &840527851
 BoxCollider2D:
@@ -2687,6 +2712,49 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 883737130}
   m_CullTransparentMesh: 1
+--- !u!1 &899321982
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 899321984}
+  - component: {fileID: 899321983}
+  m_Layer: 0
+  m_Name: GamePause
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &899321983
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 899321982}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fed438d73f19bfe43bb8736c89d320df, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!4 &899321984
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 899321982}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 536.01465, y: 195.80002, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 7
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!224 &902427061 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 2707792053954480239, guid: 3a9af2382390c314d813c4e97ac7bcbe, type: 3}
@@ -3307,7 +3375,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1348962591}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 565162258}
+        m_TargetAssemblyTypeName: UIManagement.Core.UIView, UIManagement
+        m_MethodName: Hide
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &1348962591
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3655,12 +3735,12 @@ RectTransform:
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
-  m_Father: {fileID: 840527847}
+  m_Father: {fileID: 792829822}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: 52.31845}
+  m_AnchoredPosition: {x: 0, y: -7.681549}
   m_SizeDelta: {x: 50, y: 50}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!50 &1513772726
@@ -3696,8 +3776,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9de190cffd905104bb8f0f7041a8090e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _initialVelocity: {x: 10000, y: 20000}
+  _initialVelocity: {x: 10000, y: 30000}
   _activeParent: {fileID: 693556035}
+  _pause: {fileID: 899321983}
 --- !u!114 &1513772728
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4660,7 +4741,7 @@ GameObject:
   - component: {fileID: 1306364162417413437}
   - component: {fileID: 1306364162417413438}
   m_Layer: 5
-  m_Name: BlocksParent
+  m_Name: BlocksController
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

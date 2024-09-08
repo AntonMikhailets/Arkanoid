@@ -2,8 +2,6 @@ using UnityEngine;
 
 public class Ball : MonoBehaviour
 {
-    private const string PaddleTag = "Paddle";
-    
     [SerializeField] private Vector2 _initialVelocity;
     [SerializeField] private Transform _activeParent;
     [SerializeField] private GamePause _pause;
@@ -13,6 +11,7 @@ public class Ball : MonoBehaviour
     private Vector2 _velocityBeforePause;
 
     public Rigidbody2D Rigidbody => _rigidbody;
+    public bool IsActive => _isActive;
     
     private void Awake()
     {
@@ -40,11 +39,6 @@ public class Ball : MonoBehaviour
     {
         _isActive = false;
         _rigidbody.velocity = Vector2.zero;
-    }
-
-    public void SetVelocity()
-    {
-        
     }
 
     private void OnGamePaused()

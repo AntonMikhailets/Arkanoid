@@ -40,7 +40,7 @@ namespace Blocks
         {
             if (_currentGroup != null)
             {
-                Destroy(_currentGroup);
+                Destroy(_currentGroup.gameObject);
             }
         }
         

@@ -40,6 +40,8 @@ public class Paddle : MonoBehaviour
 
     private void HitBall(Ball ball)
     {
+        if(!ball.IsActive) return;
+        
         var ballRb = ball.Rigidbody;
         var offset = (ball.transform.position.x - transform.position.x) / -HalfPaddleSize;
         var angle = offset * Degrees45;

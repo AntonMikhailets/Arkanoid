@@ -6,7 +6,12 @@ using UnityEngine;
 
 public class GameSession : MonoBehaviour
 {
+    private const int StartLevelValue = 0;
     private const int StartAttemptsValue = 3;
+
+    private const string StartNode = "Start";
+    private const string WinNode = "Win";
+    private const string LoseNode = "Lose";
     
     public event Action<int> AttemptsChanged;
     public event Action<int> LevelChanged;
@@ -16,14 +21,12 @@ public class GameSession : MonoBehaviour
     [SerializeField] private InformationScreen _looseScreen;
     
     [SerializeField] private BallFallingController _fallingController;
-    [SerializeField] private GameInitializer _gameInitializer;
     [SerializeField] private BlocksController _blocksController;
     [SerializeField] private LevelManager _levelManager;
     [SerializeField] private GamePause _gamePause;
 
     private int _attempts;
     private int _level;
-    private bool _isPause;
 
     public int Attempts
     {
@@ -70,12 +73,9 @@ public class GameSession : MonoBehaviour
     {
         Attempts--;
 
-        if (Attempts <= 0)
-        {
+        if (Attempts <= 0) {
             ShowLoseScreen();
-        }
-        else
-        {
+        } else {
             RestartLevel();
         }
     }
@@ -87,30 +87,38 @@ public class GameSession : MonoBehaviour
 
     private void RestartLevel()
     {
-        _gameInitializer.InitializeBall();
+        _levelManager.Restart();
     }
 
     private void ShowStartScreen()
     {
-        UIManager.Instance.ShowViewNode("Start");
+        UIManager.Instance.ShowViewNode(StartNode);
     }
 
     private void ShowVictoryScreen()
     {
         _gamePause.Pause();
-        UIManager.Instance.ShowViewNode("Win");
+        UIManager.Instance.ShowViewNode(WinNode);
         _victoryScreen.Show(UpgradeLevel);
     }
 
     private void ShowLoseScreen()
     {
-        UIManager.Instance.ShowViewNode("Lose");
-        _looseScreen.Show();
+        UIManager.Instance.ShowViewNode(LoseNode);
+        _looseScreen.Show(RestartGame);
     }
 
     private void UpgradeLevel()
     {
-        _levelManager.LoadLevel(++Level);
         _gamePause.Play();
+        _levelManager.LoadLevel(++Level);
+    }
+
+    private void RestartGame()
+    {
+        _gamePause.Play();
+        Level = StartLevelValue;
+        Attempts = StartAttemptsValue;
+        _levelManager.LoadLevel(StartLevelValue);
     }
 }

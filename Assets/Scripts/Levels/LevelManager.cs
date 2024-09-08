@@ -5,11 +5,19 @@ public class LevelManager : MonoBehaviour
 {
     [SerializeField] private LevelConfig _config;
     [SerializeField] private BlocksController _blocksController;
+    [SerializeField] private GameInitializer _gameInitializer;
 
-    private GameObject _currentBlocksController;
-    
     public void LoadLevel(int value)
     {
-        _blocksController.SetupGroup(_config.BlocksConfiguration[value]);
+        Debug.Log($"LevelManager.LoadLevel: {value}");
+        
+        var levelConfig = _config.BlocksConfiguration[value];
+        _blocksController.SetupGroup(levelConfig);
+        Restart();
+    }
+
+    public void Restart()
+    {
+        _gameInitializer.InitializeBall();
     }
 }
