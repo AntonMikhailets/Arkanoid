@@ -10,17 +10,20 @@ public class TopPanel : MonoBehaviour
     [SerializeField] private GameSession _gameSession;
     [SerializeField] private TextMeshProUGUI _attemptsText;
     [SerializeField] private TextMeshProUGUI _levelText;
+    [SerializeField] private TextMeshProUGUI _scoreText;
 
     private void Awake()
     {
         _gameSession.AttemptsChanged += OnAttemptsChanged;
         _gameSession.LevelChanged += OnLevelChanged;
+        _gameSession.ScoreChanged += OnScoreChanged;
     }
-    
+
     private void OnDestroy()
     {
         _gameSession.AttemptsChanged -= OnAttemptsChanged;
         _gameSession.LevelChanged -= OnLevelChanged;
+        _gameSession.ScoreChanged -= OnScoreChanged;
     }
 
     private void OnAttemptsChanged(int value)
@@ -31,5 +34,10 @@ public class TopPanel : MonoBehaviour
     private void OnLevelChanged(int value)
     {
         _levelText.text = string.Format(LevelTextFormat, value + One);
+    }
+    
+    private void OnScoreChanged(int value)
+    {
+        _scoreText.text = value.ToString();
     }
 }

@@ -8,6 +8,8 @@ public class GameSession : MonoBehaviour
 {
     private const int StartLevelValue = 0;
     private const int StartAttemptsValue = 3;
+    private const int StartScoreValue = 0;
+    private const int BlockReward = 100;
 
     private const string StartNode = "Start";
     private const string WinNode = "Win";
@@ -15,6 +17,7 @@ public class GameSession : MonoBehaviour
     
     public event Action<int> AttemptsChanged;
     public event Action<int> LevelChanged;
+    public event Action<int> ScoreChanged;
     
     [SerializeField] private InformationScreen _startScreen;
     [SerializeField] private InformationScreen _victoryScreen;
@@ -27,6 +30,7 @@ public class GameSession : MonoBehaviour
 
     private int _attempts;
     private int _level;
+    private int _score;
 
     public int Attempts
     {
@@ -48,16 +52,28 @@ public class GameSession : MonoBehaviour
         }
     }
     
+    private int Score
+    {
+        get => _score;
+        set
+        {
+            _score = value;
+            ScoreChanged?.Invoke(value);
+        }
+    }
+    
     private void Awake()
     {
         _fallingController.BallFell += OnBallFell;
         _blocksController.AllBlocksDestroyed += OnAllBlocksDestroyed;
+        _blocksController.BlockDestroyed += OnBlocksDestroyed;
     }
 
     private void Start()
     {
         Attempts = StartAttemptsValue;
-        Level = 0;
+        Level = StartLevelValue;
+        Score = StartScoreValue;
         _levelManager.LoadLevel(Level);
 
         ShowStartScreen();
@@ -67,6 +83,7 @@ public class GameSession : MonoBehaviour
     {
         _fallingController.BallFell -= OnBallFell;
         _blocksController.AllBlocksDestroyed -= OnAllBlocksDestroyed;
+        _blocksController.BlockDestroyed -= OnBlocksDestroyed;
     }
 
     private void OnBallFell()
@@ -83,6 +100,11 @@ public class GameSession : MonoBehaviour
     private void OnAllBlocksDestroyed()
     {
         ShowVictoryScreen();
+    }
+    
+    private void OnBlocksDestroyed()
+    {
+        Score += BlockReward;
     }
 
     private void RestartLevel()
@@ -119,6 +141,7 @@ public class GameSession : MonoBehaviour
         _gamePause.Play();
         Level = StartLevelValue;
         Attempts = StartAttemptsValue;
+        Score = StartScoreValue;
         _levelManager.LoadLevel(StartLevelValue);
     }
 }

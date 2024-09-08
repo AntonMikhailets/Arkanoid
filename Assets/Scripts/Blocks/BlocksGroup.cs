@@ -4,6 +4,7 @@ using UnityEngine;
 public class BlocksGroup : MonoBehaviour
 {
     public event Action AllBlocksDestroyed;
+    public event Action BlockDestroyed;
     
     [SerializeField] private Block[] _blocks;
     [SerializeField] private int _blocksAmount;
@@ -29,6 +30,7 @@ public class BlocksGroup : MonoBehaviour
     private void OnBlockDestroyed()
     {
         _blocksAmount--;
+        BlockDestroyed?.Invoke();
 
         if (_blocksAmount == 0)
         {

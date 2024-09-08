@@ -1,9 +1,11 @@
 using System;
+using DG.Tweening;
 using UnityEngine;
 
 public class Block : MonoBehaviour
 {
     private const string BallTag = "Ball";
+    private const float Duration = 0.2f;
 
     public event Action BlockDestroyed;
     
@@ -12,7 +14,14 @@ public class Block : MonoBehaviour
         if (col.transform.CompareTag(BallTag))
         {
             BlockDestroyed?.Invoke();
-            gameObject.SetActive(false);
+            Fade();
         }
+    }
+    
+    private void Fade()
+    {
+        transform.DOScale(Vector3.zero, Duration)
+            .SetEase(Ease.OutBack)
+            .OnComplete(() => gameObject.SetActive(false));
     }
 }
