@@ -1,28 +1,20 @@
 using System;
 using Blocks;
 using DefaultNamespace;
-using UIManagement.Core;
+using Levels;
+using UI;
 using UnityEngine;
 
 public class GameSession : MonoBehaviour
 {
-    private const int StartLevelValue = 0;
-    private const int StartAttemptsValue = 3;
-    private const int StartScoreValue = 0;
-    private const int BlockReward = 100;
+    private const int GameInitialValue = 0;
 
-    private const string StartNode = "Start";
-    private const string WinNode = "Win";
-    private const string LoseNode = "Lose";
-    
     public event Action<int> AttemptsChanged;
     public event Action<int> LevelChanged;
     public event Action<int> ScoreChanged;
-    
-    [SerializeField] private InformationScreen _startScreen;
-    [SerializeField] private InformationScreen _victoryScreen;
-    [SerializeField] private InformationScreen _looseScreen;
-    
+
+    [SerializeField] private GameConfig _config;
+    [SerializeField] private ScreenManager _screenManager;
     [SerializeField] private BallFallingController _fallingController;
     [SerializeField] private BlocksController _blocksController;
     [SerializeField] private LevelManager _levelManager;
@@ -67,16 +59,14 @@ public class GameSession : MonoBehaviour
         _fallingController.BallFell += OnBallFell;
         _blocksController.AllBlocksDestroyed += OnAllBlocksDestroyed;
         _blocksController.BlockDestroyed += OnBlocksDestroyed;
+        
+        InitScreens();
     }
 
     private void Start()
     {
-        Attempts = StartAttemptsValue;
-        Level = StartLevelValue;
-        Score = StartScoreValue;
-        _levelManager.LoadLevel(Level);
-
-        ShowStartScreen();
+        RestartGame();
+        StartGame();
     }
 
     private void OnDestroy()
@@ -99,12 +89,19 @@ public class GameSession : MonoBehaviour
 
     private void OnAllBlocksDestroyed()
     {
-        ShowVictoryScreen();
+        CompleteLevel();
     }
     
     private void OnBlocksDestroyed()
     {
-        Score += BlockReward;
+        Score += _config.BlockDestructionReward;
+    }
+    
+    private void InitScreens()
+    {
+        _screenManager.SetLevelCompleteScreenAction(UpgradeLevel);
+        _screenManager.SetGameLoseScreenAction(RestartGame);
+        _screenManager.SetGameCompleteScreenAction(RestartGame);
     }
 
     private void RestartLevel()
@@ -112,36 +109,47 @@ public class GameSession : MonoBehaviour
         _levelManager.Restart();
     }
 
-    private void ShowStartScreen()
+    private void StartGame()
     {
-        UIManager.Instance.ShowViewNode(StartNode);
-    }
-
-    private void ShowVictoryScreen()
-    {
-        _gamePause.Pause();
-        UIManager.Instance.ShowViewNode(WinNode);
-        _victoryScreen.Show(UpgradeLevel);
+        // добавить паузу
+        _screenManager.ShowStartScreen();
     }
 
     private void ShowLoseScreen()
     {
-        UIManager.Instance.ShowViewNode(LoseNode);
-        _looseScreen.Show(RestartGame);
+        _screenManager.ShowGameLoseScreen();
+    }
+    
+    private void ShowGameCompleteScreen()
+    {
+        _screenManager.ShowGameCompleteScreen();
+    }
+
+    private void CompleteLevel()
+    {
+        _gamePause.Pause();
+        _screenManager.ShowLevelCompleteScreen();
     }
 
     private void UpgradeLevel()
     {
         _gamePause.Play();
-        _levelManager.LoadLevel(++Level);
+        
+        if (Level == _config.LevelsAmount)
+        {
+            ShowGameCompleteScreen();
+        } else {
+            ++Level;
+            _levelManager.LoadLevel(Level);
+        }
     }
 
     private void RestartGame()
     {
         _gamePause.Play();
-        Level = StartLevelValue;
-        Attempts = StartAttemptsValue;
-        Score = StartScoreValue;
-        _levelManager.LoadLevel(StartLevelValue);
+        Level = GameInitialValue;
+        Attempts = _config.GameAttempts;
+        Score = GameInitialValue;
+        _levelManager.LoadLevel(GameInitialValue);
     }
 }

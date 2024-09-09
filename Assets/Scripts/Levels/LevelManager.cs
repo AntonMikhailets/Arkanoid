@@ -1,23 +1,31 @@
 using Blocks;
+using Levels;
 using UnityEngine;
 
 public class LevelManager : MonoBehaviour
 {
-    [SerializeField] private LevelConfig _config;
+    [SerializeField] private GameConfig _gameConfig;
     [SerializeField] private BlocksController _blocksController;
-    [SerializeField] private GameInitializer _gameInitializer;
+    [SerializeField] private BallInitializer _ballInitializer;
+    
+    private int _currentLevel;
+
+    private LevelConfig _levelConfig => _gameConfig.LevelConfig; 
 
     public void LoadLevel(int value)
     {
-        Debug.Log($"LevelManager.LoadLevel: {value}");
+        _currentLevel = value;
+        Debug.Log($"LevelManager.LoadLevel: {_currentLevel}");
         
-        var levelConfig = _config.BlocksConfiguration[value];
+        var levelConfig = _levelConfig.BlocksConfiguration[_currentLevel];
         _blocksController.SetupGroup(levelConfig);
         Restart();
     }
 
     public void Restart()
     {
-        _gameInitializer.InitializeBall();
+        var forceIncreasing = _gameConfig.BallForceIncreasingCoefficient * _currentLevel;
+        var initialBallForce = _gameConfig.StartBallVelocity + forceIncreasing;
+        _ballInitializer.InitializeBall(initialBallForce);   
     }
 }

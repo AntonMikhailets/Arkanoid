@@ -6,19 +6,19 @@ public class InformationScreen : MonoBehaviour
 {
     [SerializeField] private Button _actionButton;
 
-    private Action _clickAction;
+    private Action _currentClickAction;
 
-    public void Show(Action clickAction = null)
+    public void SetClickAction(Action clickAction)
     {
-        _clickAction = clickAction;
+        _currentClickAction = clickAction;
         _actionButton.onClick.AddListener(InvokeClickAction);
     }
 
     private void InvokeClickAction()
     {
-        if (_clickAction != null && !Input.GetKeyDown(KeyCode.Space))
+        if (_currentClickAction != null && !Input.GetKeyDown(KeyCode.Space))
         {
-            _clickAction?.Invoke();
+            _currentClickAction?.Invoke();
         }
     }
 }

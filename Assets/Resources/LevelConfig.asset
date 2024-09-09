@@ -14,4 +14,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _blocksConfiguration:
   - {fileID: 2707792053954480236, guid: 3a9af2382390c314d813c4e97ac7bcbe, type: 3}
-  - {fileID: 962098972954935951, guid: ba89724fddb72554f8444733756b8976, type: 3}
+  - {fileID: 2707792053954480236, guid: 719c6bcc6e4670842993d9e372068ebb, type: 3}
+  - {fileID: 2707792053954480236, guid: 1a9d07e970024e34ba726bf4c704e460, type: 3}
+  - {fileID: 2707792053954480236, guid: d8f706a9bf3d45f42a157400771d6c4e, type: 3}
+  - {fileID: 2707792053954480236, guid: 3c6a57a87ae7f284eb55f93b83672df4, type: 3}
+  - {fileID: 2707792053954480236, guid: 1a88ae0551d3d824e8b764ed98314c9a, type: 3}
+  - {fileID: 2707792053954480236, guid: c753de1c4e8faa548b7f12a430f2c6fe, type: 3}
+  - {fileID: 2707792053954480236, guid: 17dec65d58c4df54e9ac2418dfb63a01, type: 3}
+  - {fileID: 2707792053954480236, guid: 2b1263e3ffdb16b40afe44ffdad876f9, type: 3}
+  - {fileID: 2707792053954480236, guid: 475598376edb2cd4a997757f16b95a31, type: 3}
