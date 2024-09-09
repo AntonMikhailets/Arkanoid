@@ -10,7 +10,10 @@ Arkanoid - игра, изначально разработанная в 1986 г�
 
 Дополнительной механникой является ускорение движения мяча при прохождении более сложных уровней.
 
-![Скриншот 1](https://github.com/AntonMikhailets/Arkanoid/blob/main/ArkanoidScreenshot3.jpg)
+![Скриншот 1](https://github.com/AntonMikhailets/Arkanoid/blob/main/ArkanoidScreenshot0.png)
+![Скриншот 2](https://github.com/AntonMikhailets/Arkanoid/blob/main/ArkanoidScreenshot1.png)
+![Скриншот 3](https://github.com/AntonMikhailets/Arkanoid/blob/main/ArkanoidScreenshot2.png)
 
-Ссылка на билд: 
+Ссылка на билд: https://drive.google.com/drive/folders/10fOIuUWn42a_AN6GT_VpkQ46gWTT9P6N?usp=drive_link
+Архив: https://github.com/AntonMikhailets/Arkanoid/blob/main/Arkanoid.zip
 
