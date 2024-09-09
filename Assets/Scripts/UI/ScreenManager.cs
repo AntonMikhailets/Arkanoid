@@ -15,6 +15,12 @@ namespace UI
         [SerializeField] private InformationScreen _levelCompleteScreen;
         [SerializeField] private InformationScreen _looseScreen;
         [SerializeField] private InformationScreen _gameCompleteScreen;
+        [SerializeField] private GamePause _gamePause;
+        
+        public void SetStartScreenAction(Action clickAction)
+        {
+            SetScreenAction(clickAction, _startScreen);
+        }
         
         public void SetLevelCompleteScreenAction(Action clickAction)
         {
@@ -58,6 +64,7 @@ namespace UI
 
         private void ShowScreen(string node)
         {
+            _gamePause.Pause();
             UIManager.Instance.ShowViewNode(node);
         }
     }

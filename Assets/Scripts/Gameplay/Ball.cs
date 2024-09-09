@@ -12,6 +12,7 @@ public class Ball : MonoBehaviour
 
     public Rigidbody2D Rigidbody => _rigidbody;
     public bool IsActive => _isActive;
+    private bool IsPushAvailable => !_isActive && !_pause.IsPause;
     
     private void Awake()
     {
@@ -29,7 +30,7 @@ public class Ball : MonoBehaviour
 
     private void Update()
     {
-        if (Input.GetKeyDown(KeyCode.Space) && !_isActive)
+        if (Input.GetKeyDown(KeyCode.Space) && IsPushAvailable)
         {
             PushBall();
         }
@@ -54,6 +55,8 @@ public class Ball : MonoBehaviour
 
     private void OnGamePlayed()
     {
+        if(_rigidbody.velocity == Vector2.zero) return;
+        
         _isActive = true;
         _rigidbody.bodyType = RigidbodyType2D.Dynamic;
         _rigidbody.velocity = _velocityBeforePause;

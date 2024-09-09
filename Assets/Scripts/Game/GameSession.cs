@@ -99,6 +99,7 @@ public class GameSession : MonoBehaviour
     
     private void InitScreens()
     {
+        _screenManager.SetStartScreenAction(_gamePause.Play);
         _screenManager.SetLevelCompleteScreenAction(UpgradeLevel);
         _screenManager.SetGameLoseScreenAction(RestartGame);
         _screenManager.SetGameCompleteScreenAction(RestartGame);
@@ -111,7 +112,6 @@ public class GameSession : MonoBehaviour
 
     private void StartGame()
     {
-        // добавить паузу
         _screenManager.ShowStartScreen();
     }
 
@@ -127,21 +127,19 @@ public class GameSession : MonoBehaviour
 
     private void CompleteLevel()
     {
-        _gamePause.Pause();
-        _screenManager.ShowLevelCompleteScreen();
+        if (Level == _config.LevelsAmount - 1)
+        {
+            ShowGameCompleteScreen();
+        } else {
+            _screenManager.ShowLevelCompleteScreen();
+        }
     }
 
     private void UpgradeLevel()
     {
         _gamePause.Play();
-        
-        if (Level == _config.LevelsAmount)
-        {
-            ShowGameCompleteScreen();
-        } else {
-            ++Level;
-            _levelManager.LoadLevel(Level);
-        }
+        ++Level;
+        _levelManager.LoadLevel(Level);
     }
 
     private void RestartGame()
