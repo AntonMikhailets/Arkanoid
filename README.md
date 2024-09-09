@@ -12,6 +12,7 @@ Arkanoid - игра, изначально разработанная в 1986 г�
 
 Скриншоты:
 [Скриншот 1] (https://github.com/AntonMikhailets/Arkanoid/blob/main/ArkanoidScreenshot1.jpg)
+https://github.com/AntonMikhailets/Arkanoid/blob/main/ArkanoidScreenshot3.png
 
 Ссылка на билд: 
 
