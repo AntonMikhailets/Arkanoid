@@ -1,9 +1,13 @@
+using Blocks;
 using UnityEngine;
 
-[CreateAssetMenu(fileName = "LevelConfig", menuName = "ScriptableObjects/LevelConfig")]
-public class LevelConfig : ScriptableObject
+namespace Levels
 {
-    [SerializeField] private BlocksGroup[] _blocksConfiguration;
+    [CreateAssetMenu(fileName = "LevelConfig", menuName = "ScriptableObjects/LevelConfig")]
+    public class LevelConfig : ScriptableObject
+    {
+        [SerializeField] private BlocksGroup[] _blocksConfiguration;
 
-    public BlocksGroup[] BlocksConfiguration => _blocksConfiguration;
+        public BlocksGroup[] BlocksConfiguration => _blocksConfiguration;
+    }
 }

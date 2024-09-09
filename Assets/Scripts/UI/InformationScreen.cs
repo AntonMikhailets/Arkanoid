@@ -2,23 +2,26 @@ using System;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class InformationScreen : MonoBehaviour
+namespace UI
 {
-    [SerializeField] private Button _actionButton;
-
-    private Action _currentClickAction;
-
-    public void SetClickAction(Action clickAction)
+    public class InformationScreen : MonoBehaviour
     {
-        _currentClickAction = clickAction;
-        _actionButton.onClick.AddListener(InvokeClickAction);
-    }
+        [SerializeField] private Button _actionButton;
 
-    private void InvokeClickAction()
-    {
-        if (_currentClickAction != null && !Input.GetKeyDown(KeyCode.Space))
+        private Action _currentClickAction;
+
+        public void SetClickAction(Action clickAction)
         {
-            _currentClickAction?.Invoke();
+            _currentClickAction = clickAction;
+            _actionButton.onClick.AddListener(InvokeClickAction);
+        }
+
+        private void InvokeClickAction()
+        {
+            if (_currentClickAction != null && !Input.GetKeyDown(KeyCode.Space))
+            {
+                _currentClickAction?.Invoke();
+            }
         }
     }
 }

@@ -1,44 +1,47 @@
 using System;
 using UnityEngine;
 
-public class BlocksGroup : MonoBehaviour
+namespace Blocks
 {
-    public event Action AllBlocksDestroyed;
-    public event Action BlockDestroyed;
-    
-    private Block[] _blocks;
-    private int _blocksAmount;
-    
-    private void Start()
+    public class BlocksGroup : MonoBehaviour
     {
-        _blocks = GetComponentsInChildren<Block>();
-        _blocksAmount = _blocks.Length;
+        public event Action AllBlocksDestroyed;
+        public event Action BlockDestroyed;
+    
+        private Block[] _blocks;
+        private int _blocksAmount;
+    
+        private void Start()
+        {
+            _blocks = GetComponentsInChildren<Block>();
+            _blocksAmount = _blocks.Length;
 
         
-        foreach (var block in _blocks)
-        {
-            block.BlockDestroyed += OnBlockDestroyed;
+            foreach (var block in _blocks)
+            {
+                block.BlockDestroyed += OnBlockDestroyed;
+            }
         }
-    }
 
-    private void OnDestroy()
-    {
-        if (_blocks == null) return;
+        private void OnDestroy()
+        {
+            if (_blocks == null) return;
         
-        foreach (var block in _blocks)
-        {
-            block.BlockDestroyed -= OnBlockDestroyed;
+            foreach (var block in _blocks)
+            {
+                block.BlockDestroyed -= OnBlockDestroyed;
+            }
         }
-    }
 
-    private void OnBlockDestroyed()
-    {
-        _blocksAmount--;
-        BlockDestroyed?.Invoke();
-
-        if (_blocksAmount == 0)
+        private void OnBlockDestroyed()
         {
-            AllBlocksDestroyed?.Invoke();
+            _blocksAmount--;
+            BlockDestroyed?.Invoke();
+
+            if (_blocksAmount == 0)
+            {
+                AllBlocksDestroyed?.Invoke();
+            }
         }
     }
 }

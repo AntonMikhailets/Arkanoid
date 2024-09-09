@@ -1,7 +1,7 @@
 using System;
 using UnityEngine;
 
-namespace DefaultNamespace
+namespace Gameplay
 {
     public class BallFallingController : MonoBehaviour
     {
