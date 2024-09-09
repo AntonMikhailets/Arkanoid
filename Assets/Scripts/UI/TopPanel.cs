@@ -3,8 +3,9 @@ using UnityEngine;
 
 public class TopPanel : MonoBehaviour
 {
-    private const string AttemptsTextFormat = "Попыток: {0}";
-    private const string LevelTextFormat = "Уроыень: {0}";
+    private const string AttemptsTextFormat = "Hp: {0}";
+    private const string LevelTextFormat = "Lvl: {0}";
+    private const string ScoreTextFormat = "Score: {0}";
     private const int One = 1;
     
     [SerializeField] private GameSession _gameSession;
@@ -38,6 +39,6 @@ public class TopPanel : MonoBehaviour
     
     private void OnScoreChanged(int value)
     {
-        _scoreText.text = value.ToString();
+        _scoreText.text = string.Format(ScoreTextFormat, value);
     }
 }

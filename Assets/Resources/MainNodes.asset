@@ -15,6 +15,7 @@ MonoBehaviour:
   Collection: {fileID: 11400000}
   Id: Complete
   ViewIds:
+  - Game
   - Complete
 --- !u!114 &-5208053959292025247
 MonoBehaviour:
